@@ -1,21 +1,22 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Models\job;
+use App\Models\Job;
+
 Route::get('/', function () {
     return view('home');
 });
 
 Route::get('/jobs', function () {
-return view('jobs',[
-    'jobs'=>job::all() ,
-]);
+    return view('jobs', [
+        'jobs' => Job::all(),
+    ]);
 });
 
-Route::get('/jobs/{id}', function ($id){
+Route::get('/jobs/{id}', function ($id) {
+    $job = Job::find($id);
 
-    $job=job::find($id);
-    return view('job',['job'=>$job]);
+    return view('job', ['job' => $job]);
 });
 
 Route::get('/contact', function () {
